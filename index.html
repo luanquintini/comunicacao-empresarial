@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comunicação Empresarial: como as empresas se comunicam?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1f4632; --green-2:#2b5a40; --green-soft:#9cc3a0; --green-pale:#cfe3c8;
+    --gold:#c8a96a; --cream:#f8f4ec; --card:#fffdf8; --line:#e7dcc6;
+    --text:#2e2e2e; --muted:#555;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
+  body{font-family:Poppins,system-ui,sans-serif;background:var(--cream);color:var(--text);line-height:1.6}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  h1,h2,h3{font-family:Outfit,sans-serif;color:var(--green);line-height:1.15}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:rgba(248,244,236,.95);backdrop-filter:blur(8px);border-bottom:2px solid var(--line)}
+  .nav{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:12px 24px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand-icon{width:54px;height:54px;border-radius:12px;background:var(--green);display:grid;place-items:center}
+  .brand-text{font-family:Outfit;font-weight:600;color:var(--green);line-height:1.1;font-size:15px;padding-right:16px;border-right:2px solid var(--gold)}
+  nav ul{list-style:none;display:flex;align-items:center;gap:6px}
+  nav li+li::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin:0 14px;vertical-align:middle}
+  nav a{font-family:Outfit;font-weight:600;font-size:16px;color:var(--green);text-decoration:none;padding:8px 16px;border-radius:8px;transition:.2s;display:inline-block;position:relative}
+  nav a:hover{background:#efe7d6}
+  nav a.active{background:var(--green);color:#fff;text-decoration:none}
+  nav a.active::after{content:"";position:absolute;left:18%;right:18%;bottom:-10px;height:5px;border-radius:3px;background:var(--gold)}
+  .menu-btn{display:none;background:var(--green);border:0;border-radius:8px;width:44px;height:44px;cursor:pointer}
+
+  section{padding:80px 24px;position:relative}
+  .wrap{max-width:1200px;margin:0 auto}
+  .sec-title{display:flex;align-items:center;gap:16px;margin-bottom:36px}
+  .sec-title .ic{width:60px;height:60px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
+  .sec-title h2{font-size:clamp(30px,4vw,44px);font-weight:700}
+  .tag{display:inline-block;font-family:Outfit;font-weight:600;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+
+  /* HERO */
+  #inicio{padding-top:56px;overflow:hidden;min-height:calc(100vh - 80px);display:flex;align-items:center}
+  .hero{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;position:relative;z-index:1}
+  .hero h1{font-size:clamp(36px,5vw,58px);font-weight:800}
+  .gold-bar{width:56px;height:5px;border-radius:3px;background:var(--gold);margin:28px 0}
+  .hero p.lead{font-size:18px;color:var(--muted);max-width:480px}
+  .team{display:flex;align-items:center;gap:18px;margin-top:40px}
+  .team .ic{width:64px;height:64px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
+  .team p{font-size:15px}
+  .hero-img{border-radius:18px;overflow:hidden;box-shadow:0 20px 50px rgba(31,70,50,.18)}
+  .hero-img img{width:100%;aspect-ratio:1.2/1;object-fit:cover}
+  .blob{position:absolute;left:-90px;bottom:-110px;width:360px;height:320px;z-index:0}
+
+  /* COMUNICAÇÃO */
+  #comunicacao{background:#fbf8f1}
+  .com-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:28px}
+  .topics{display:flex;flex-direction:column;gap:14px}
+  .topic{display:flex;background:var(--card);border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.05);transition:.25s}
+  .topic:hover{transform:translateX(4px);box-shadow:0 8px 24px rgba(31,70,50,.12)}
+  .topic .ic{width:110px;flex:none;background:var(--green);display:grid;place-items:center}
+  .topic .tx{padding:18px 22px}
+  .topic h3{font-size:18px;margin-bottom:4px;color:#333}
+  .topic p{font-size:15px;color:var(--muted)}
+  .photos{display:flex;flex-direction:column;gap:18px}
+  figure.photo{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 4px 18px rgba(0,0,0,.05)}
+  figure.photo img{border-radius:10px;width:100%;aspect-ratio:1.6/1;object-fit:cover}
+  figcaption{font-size:13.5px;margin-top:10px;color:var(--muted)}
+  figcaption b{color:#222}
+
+  /* DOCUMENTOS */
+  .docs{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+  .doc{grid-column:span 3;display:flex;gap:16px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:18px;transition:.25s}
+  .doc:nth-child(n+5){grid-column:span 4}
+  .doc:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 10px 24px rgba(31,70,50,.1)}
+  .doc .ic{width:72px;height:80px;flex:none;border-radius:10px;background:var(--green);display:grid;place-items:center}
+  .doc h3{font-size:16px;color:#333;margin-bottom:2px}
+  .doc p{font-size:14px;color:var(--muted)}
+  .models-title{font-family:Outfit;font-weight:700;color:var(--green);font-size:22px;margin:52px 0 18px}
+  .models{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+  .model{cursor:zoom-in}
+  .model .thumb{background:#fff;border-radius:10px;overflow:hidden;height:170px;box-shadow:0 4px 14px rgba(0,0,0,.07);transition:.25s}
+  .model:hover .thumb{transform:translateY(-4px);box-shadow:0 10px 24px rgba(0,0,0,.12)}
+  .model .thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+  .model .thumb.memo{background:#cfe4ef}
+  .model p{font-size:13.5px;font-weight:600;color:#444;margin-top:10px;line-height:1.4}
+
+  /* TECNOLOGIA */
+  #tecnologia{background:#fbf8f1}
+  .tech{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .tcard{background:var(--card);border:2px solid var(--green);border-radius:16px;overflow:hidden}
+  .thead{background:var(--green);display:flex;align-items:center;gap:16px;padding:16px 22px}
+  .thead .logo{width:66px;height:66px;border-radius:50%;background:#fff;border:3px solid var(--gold);display:grid;place-items:center;flex:none}
+  .thead h3{color:#fff;font-size:22px}
+  .tbody{padding:22px 26px}
+  .tbody .desc{font-weight:600;color:#333;margin-bottom:16px}
+  .row{display:flex;gap:12px;align-items:flex-start;margin-top:10px;font-size:15px}
+  .row svg{flex:none;margin-top:2px}
+  .row b{color:var(--green)}
+  .tshot{margin-top:22px;display:flex;flex-direction:column;align-items:center}
+  .tshot img{border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,.15);cursor:zoom-in}
+  .tshot .cap{display:flex;align-items:center;gap:12px;margin-top:14px;font-family:Outfit;font-weight:600;color:var(--green);font-size:15px}
+  .tshot .cap span.ic{width:46px;height:46px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
+  .wa{flex-direction:row;justify-content:center;gap:24px}
+  .wa img{max-height:340px}
+
+  /* REFERENCIAS */
+  #referencias{overflow:hidden}
+  .ref-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:40px;align-items:center}
+  .refs{list-style:none}
+  .refs li{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-weight:600;font-size:15px}
+  .refs li .ic{width:36px;height:36px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
+  .refs a{color:var(--green-2);text-underline-offset:3px;word-break:break-all}
+  .ia{display:flex;gap:16px;margin-top:30px;background:var(--card);border-radius:14px;padding:22px;border-left:5px solid var(--gold)}
+  .ia .ic{width:52px;height:52px;border-radius:50%;background:var(--green);display:grid;place-items:center;flex:none}
+  .ia h3{font-size:22px;color:#333;margin-bottom:6px}
+  .ia p{font-size:15px;color:var(--muted)}
+  .ref-art{position:relative;height:420px}
+  .ref-art .circle{position:absolute;right:-180px;bottom:-140px;width:480px;height:480px;border-radius:50%;background:var(--green)}
+  .ref-art .ring{position:absolute;right:-130px;bottom:-60px;width:520px;height:520px;border-radius:50%;border:2px solid var(--gold)}
+  .ref-art svg.paper{position:absolute;left:10%;top:10px;width:250px;filter:drop-shadow(0 12px 20px rgba(0,0,0,.12))}
+
+  footer{background:var(--green);color:#e9e2d0;text-align:center;padding:30px 24px;font-size:14px}
+  footer b{color:var(--gold)}
+
+  /* LIGHTBOX */
+  .lb{position:fixed;inset:0;background:rgba(15,30,22,.85);display:none;place-items:center;z-index:100;padding:24px;cursor:zoom-out}
+  .lb.open{display:grid}
+  .lb img{max-height:90vh;max-width:92vw;border-radius:10px;background:#fff}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .rv.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+  @media (max-width:980px){
+    .menu-btn{display:grid;place-items:center}
+    nav ul{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:var(--cream);padding:12px 24px 20px;border-bottom:2px solid var(--line);gap:4px}
+    nav ul.open{display:flex}
+    nav li+li::before{display:none}
+    nav a.active::after{display:none}
+    .hero,.com-grid,.tech,.ref-grid{grid-template-columns:1fr}
+    .doc,.doc:nth-child(n+5){grid-column:span 6}
+    .models{grid-template-columns:repeat(3,1fr)}
+    .ref-art{display:none}
+  }
+  @media (max-width:600px){
+    section{padding:56px 18px}
+    .doc,.doc:nth-child(n+5){grid-column:span 12}
+    .models{grid-template-columns:repeat(2,1fr)}
+    .topic .ic{width:76px}
+    .brand-text{display:none}
+    .wa{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a href="#inicio" class="brand" aria-label="Início">
+      <span class="brand-icon">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/><path d="M12 6s1.5-2 5-2 5 2 5 2v14s-1.5-1-5-1-5 1-5 1V6z"/></svg>
+      </span>
+      <span class="brand-text">Comunicação<br>que conecta</span>
+    </a>
+    <button class="menu-btn" aria-label="Abrir menu" onclick="document.querySelector('nav ul').classList.toggle('open')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <nav>
+      <ul>
+        <li><a href="#inicio" class="active">Início</a></li>
+        <li><a href="#comunicacao">Comunicação Empresarial</a></li>
+        <li><a href="#documentos">Documentos</a></li>
+        <li><a href="#tecnologia">Tecnologia</a></li>
+        <li><a href="#referencias">Referências</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- INÍCIO -->
+<section id="inicio">
+  <svg class="blob" viewBox="0 0 360 320" aria-hidden="true">
+    <path d="M40 40c50-30 90 30 130 60s110 10 140 70-20 150-120 150H0V80c0-20 15-30 40-40z" fill="#9cc3a0"/>
+    <path d="M10 120c40-20 70 20 100 40s80 20 100 70-40 90-110 90H0V140c0-10 3-15 10-20z" fill="#cfe3c8"/>
+  </svg>
+  <div class="wrap hero">
+    <div class="rv">
+      <h1>Comunicação Empresarial:<br>como as empresas se comunicam?</h1>
+      <div class="gold-bar"></div>
+      <p class="lead">Neste site a gente mostra o que pesquisou sobre comunicação nas empresas: os tipos, os canais, os documentos mais usados e as tecnologias que estão mudando o jeito de se comunicar no trabalho.</p>
+      <div class="team">
+        <span class="ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3"/><circle cx="5" cy="10" r="2.2"/><circle cx="19" cy="10" r="2.2"/><path d="M6.5 19a5.5 5.5 0 0 1 11 0"/><path d="M1.5 18.5a3.8 3.8 0 0 1 4.5-3.6M22.5 18.5a3.8 3.8 0 0 0-4.5-3.6"/></svg></span>
+        <p><b>Equipe:</b> Luan Alves e Davi Fraron.<br>Aprendizagem Industrial – Assistente de PCP ·<br>Turma AI PCP3 2026/2 V4 · SENAI Blumenau.</p>
+      </div>
+    </div>
+    <div class="hero-img rv"><img src="img/hero.jpg" alt="Equipe de operários com capacetes cumprimentando gestores dentro de uma fábrica"></div>
+  </div>
+</section>
+
+<!-- COMUNICAÇÃO -->
+<section id="comunicacao">
+  <div class="wrap">
+    <div class="sec-title rv">
+      <span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></span>
+      <div><span class="tag">O que pesquisamos</span><h2>Comunicação Empresarial</h2></div>
+    </div>
+    <div class="com-grid">
+      <div class="topics">
+        <div class="topic rv">
+          <div class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/><path d="M12 0.5v-0M4 4l1.2 1.2M20 4l-1.2 1.2M1.5 10H3M21 10h1.5"/></svg></div>
+          <div class="tx"><h3>O que é?</h3><p>É todo jeito que a empresa usa para passar informação, seja para quem trabalha nela, seja para clientes, fornecedores e outras pessoas de fora. É importante porque, quando funciona, todo mundo sabe o que fazer, tem menos erro e a empresa passa uma imagem melhor.</p></div>
+        </div>
+        <div class="topic rv">
+          <div class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7" cy="6" r="2.5"/><path d="M2.5 13a4.5 4.5 0 0 1 9 0"/><circle cx="17" cy="13" r="2.5"/><path d="M12.5 20a4.5 4.5 0 0 1 9 0"/><path d="M14 4h4a2 2 0 0 1 2 2v2M18 9.5 20 8l2 1.5M10 20H6a2 2 0 0 1-2-2v-1M6 15.5 4 17l-2-1.5"/></svg></div>
+          <div class="tx"><h3>Interna x Externa</h3><p>A comunicação interna acontece entre colegas, líderes e setores (ex.: e-mail do RH sobre o horário do refeitório; reunião para organizar as tarefas). A externa é com pessoas de fora da empresa (ex.: atendimento ao cliente pelo WhatsApp; publicação da empresa no Instagram).</p></div>
+        </div>
+        <div class="topic rv">
+          <div class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M7 21h10M4 7h16M12 3l-1 4h2z"/><path d="M4 7l-3 7a3 3 0 0 0 6 0L4 7zM20 7l-3 7a3 3 0 0 0 6 0l-3-7z"/></svg></div>
+          <div class="tx"><h3>Formal x Informal</h3><p>A formal segue regras e fica registrada (e-mails, atas, documentos oficiais), usada em decisões importantes e com clientes ou órgãos públicos. A informal é a conversa do dia a dia; ajuda no clima da equipe, mas não serve quando a informação precisa ficar registrada.</p></div>
+        </div>
+        <div class="topic rv">
+          <div class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4a1 1 0 0 0 1 1h3l6 4V5L7 9H4a1 1 0 0 0-1 1z"/><path d="M7 15l1 5h2l-.5-4M17 9.5a3.5 3.5 0 0 1 0 5M19.5 7l1.5-1.5M19.5 17l1.5 1.5M20.5 12H23"/></svg></div>
+          <div class="tx"><h3>Principais canais</h3><p>Reuniões (alinhar a equipe e tomar decisões); mural e intranet (divulgar avisos); aplicativos de mensagens, como WhatsApp e Teams (trocar informações rapidamente); telefone (resolver assuntos urgentes); redes sociais e site (divulgar a empresa e atender o público).</p></div>
+        </div>
+        <div class="topic rv">
+          <div class="ic"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></svg></div>
+          <div class="tx"><h3>E quando dá errado?</h3><p>Uma comunicação inadequada pode causar informações mal explicadas, erros nas tarefas, conflitos entre setores, desmotivação dos funcionários, perda de clientes e prejuízos para a empresa.</p></div>
+        </div>
+      </div>
+      <div class="photos">
+        <figure class="photo rv"><img src="img/interna.jpg" alt="Líder em pé conversando com a equipe numa reunião"><figcaption><b>Exemplo de comunicação interna:</b> o líder conversa com a equipe numa reunião presencial para combinar as tarefas do dia.</figcaption></figure>
+        <figure class="photo rv"><img src="img/externa.jpg" alt="Atendente com headset sorrindo em frente ao notebook"><figcaption><b>Exemplo de comunicação externa:</b> a atendente fala com o cliente por telefone para tirar dúvidas e resolver problemas.</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTOS -->
+<section id="documentos">
+  <div class="wrap">
+    <div class="sec-title rv">
+      <span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h6"/></svg></span>
+      <div><span class="tag">Os mais usados</span><h2>Documentos</h2></div>
+    </div>
+    <div class="docs">
+      <div class="doc rv"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="1.5"/><path d="m2 6 10 7 10-7"/></svg></div><div><h3>E-mail corporativo</h3><p>Mensagem enviada pelo e-mail da empresa para avisos, pedidos e arquivos; qualquer funcionário manda, recebem colegas, clientes ou fornecedores.</p></div></div>
+      <div class="doc rv"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="18" rx="1.5"/><path d="M8 2v4M12 2v4M16 2v4M8 11h8M8 15h8M8 19h5"/></svg></div><div><h3>Memorando</h3><p>Recado curto e formal entre setores da mesma empresa para avisar decisões ou pedir providências; a chefia faz, outro setor recebe.</p></div></div>
+      <div class="doc rv"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 12h8M8 16h8"/></svg></div><div><h3>Ofício</h3><p>Documento formal para falar com outras instituições, principalmente órgãos públicos; diretores fazem.</p></div></div>
+      <div class="doc rv"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="17" rx="9" ry="3"/><circle cx="12" cy="7" r="2.3"/><circle cx="6" cy="8.5" r="1.8"/><circle cx="18" cy="8.5" r="1.8"/><path d="M8.5 14a3.5 3.5 0 0 1 7 0M3.3 13.5A2.8 2.8 0 0 1 8 12.5M20.7 13.5A2.8 2.8 0 0 0 16 12.5"/></svg></div><div><h3>Ata de reunião</h3><p>Resumo escrito do que foi falado e decidido numa reunião; uma pessoa escreve e os participantes assinam.</p></div></div>
+      <div class="doc rv"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h3l3 13h10"/><circle cx="10" cy="20" r="1.6"/><circle cx="18" cy="20" r="1.6"/><path d="M11 6l6-2 2 6-6 2z"/></svg></div><div><h3>Requisição de materiais</h3><p>Formulário para pedir materiais do almoxarifado; o setor que precisa preenche, o almoxarifado recebe.</p></div></div>
+      <div class="doc rv"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="13" width="4" height="8" rx=".5"/><rect x="10" y="8" width="4" height="13" rx=".5"/><rect x="17" y="3" width="4" height="18" rx=".5"/></svg></div><div><h3>Relatório empresarial</h3><p>Mostra dados e resultados para ajudar os gestores a decidir; supervisores fazem, a gerência recebe.</p></div></div>
+      <div class="doc rv"><div class="ic"><svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4" width="14" height="18" rx="1.5"/><path d="M9 2h6v4H9zM8 11l1.2 1.2L11.5 10M13.5 11H16M8 16l1.2 1.2 2.3-2.2M13.5 16H16"/></svg></div><div><h3>POP</h3><p>Passo a passo de como fazer uma tarefa para todo mundo fazer igual, com qualidade e segurança: o setor de qualidade faz, os operadores usam.</p></div></div>
+    </div>
+
+    <h3 class="models-title rv">Modelos de documentos <small style="font-family:Poppins;font-weight:400;font-size:14px;color:#777">(clique para ampliar)</small></h3>
+    <div class="models">
+      <div class="model rv"><div class="thumb"><img src="img/oficio.jpg" alt="Modelo de ofício"></div><p>Modelo de ofício: número, data, destinatário, assunto e assinatura.</p></div>
+      <div class="model rv"><div class="thumb memo"><img src="img/memorando.jpg" alt="Modelo de memorando"></div><p>Modelo de memorando: recado formal, curto e direto entre setores.</p></div>
+      <div class="model rv"><div class="thumb"><img src="img/ata.jpg" alt="Modelo de ata de reunião"></div><p>Modelo de ata: data, local, participantes e assinaturas.</p></div>
+      <div class="model rv"><div class="thumb"><img src="img/requisicao.jpg" alt="Modelo de requisição de material"></div><p>Requisição de materiais: setor, item, quantidade e quem pediu.</p></div>
+      <div class="model rv"><div class="thumb"><img src="img/pop.jpg" alt="Modelo de POP"></div><p>Modelo de POP: passo a passo para fazer a tarefa do mesmo jeito e com segurança.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TECNOLOGIA -->
+<section id="tecnologia">
+  <div class="wrap">
+    <div class="sec-title rv">
+      <span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M2 20h20M8 9l4-2 4 2-4 2z"/></svg></span>
+      <div><span class="tag">Mudando o jeito de se comunicar</span><h2>Tecnologia</h2></div>
+    </div>
+    <div class="tech">
+      <div class="rv">
+        <div class="tcard">
+          <div class="thead">
+            <span class="logo"><svg width="38" height="38" viewBox="0 0 48 48"><circle cx="34" cy="13" r="5" fill="#7b83eb"/><rect x="27" y="20" width="16" height="16" rx="4" fill="#7b83eb"/><circle cx="22" cy="10" r="6" fill="#5059c9"/><path d="M12 18h20v14a10 10 0 0 1-20 0z" fill="#5059c9"/><rect x="4" y="14" width="22" height="22" rx="3" fill="#4b53bc"/><path d="M9 20h12M15 20v12" stroke="#fff" stroke-width="3"/></svg></span>
+            <h3>Microsoft Teams</h3>
+          </div>
+          <div class="tbody">
+            <p class="desc">Junta chat, videochamada, grupos e arquivos num lugar só; empresas usam para reuniões online.</p>
+            <div class="row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><b>Vantagem:</b> tudo centralizado e reunião sem deslocamento.</span></div>
+            <div class="row"><svg width="22" height="22" viewBox="0 0 24 24" fill="#b89a5e"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span><b style="color:#7a5d23">Risco:</b> muitas notificações atrapalham e sem internet não funciona.</span></div>
+          </div>
+        </div>
+        <div class="tshot">
+          <img src="img/teams.jpg" alt="Tela do Microsoft Teams com videochamada">
+          <div class="cap"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></span>Tela do Microsoft Teams: chat, videochamada e arquivos num lugar só.</div>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="tcard">
+          <div class="thead">
+            <span class="logo"><svg width="38" height="38" viewBox="0 0 24 24"><path fill="#25d366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.6 7.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.4l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.3-.1.6.5.9 1.2 1.6 2 2.1.3.2.5.2.7 0l.6-.7c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.4.4 0 .5-.2 1.2-.7 1.5-.6.4-1.4.6-2.4.3a9.6 9.6 0 0 1-5.3-4.7c-.5-1-.6-1.9-.2-2.8z"/></svg></span>
+            <h3>WhatsApp Business com chatbot</h3>
+          </div>
+          <div class="tbody">
+            <p class="desc">Versão do WhatsApp para empresas com catálogo, respostas automáticas e robô de atendimento.</p>
+            <div class="row"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg><span><b>Vantagem:</b> cliente atendido rápido, até fora do horário.</span></div>
+            <div class="row"><svg width="22" height="22" viewBox="0 0 24 24" fill="#b89a5e"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg><span><b style="color:#7a5d23">Risco:</b> o robô pode responder errado ou parecer frio, e os dados podem vazar <b style="color:#222">(LGPD)</b>.</span></div>
+          </div>
+        </div>
+        <div class="tshot wa">
+          <div class="cap"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></span>Conversa no WhatsApp Business<br>com resposta automática.</div>
+          <img src="img/whatsapp.jpg" alt="Celular mostrando conversa no WhatsApp Business com resposta automática">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFERÊNCIAS -->
+<section id="referencias">
+  <div class="wrap ref-grid">
+    <div>
+      <div class="sec-title rv">
+        <span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5V4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z"/><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M10 2v8l2.5-2L15 10V2"/></svg></span>
+        <h2>Referências</h2>
+      </div>
+      <ul class="refs rv">
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span>Gupy - Comunicação empresarial: <a href="https://www.gupy.io/blog/comunicacao-empresarial" target="_blank" rel="noopener">https://www.gupy.io/blog/comunicacao-empresarial</a></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span>Metadados - Comunicação interna: <a href="https://www.metadados.com.br/blog/comunicacao-interna" target="_blank" rel="noopener">https://www.metadados.com.br/blog/comunicacao-interna</a></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span>Doctum - Comunicação Empresarial <a href="https://dspace.doctum.edu.br" target="_blank" rel="noopener">(dspace.doctum.edu.br)</a></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span>Periódicos UNIT - A comunicação empresarial <a href="https://periodicos.set.edu.br" target="_blank" rel="noopener">(periodicos.set.edu.br)</a></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span>Manual de Redação da Presidência da República, 3ª edição (2018)</span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span>Microsoft Teams: <a href="https://www.microsoft.com/pt-br/microsoft-teams" target="_blank" rel="noopener">https://www.microsoft.com/pt-br/microsoft-teams</a></span></li>
+        <li><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span><span>WhatsApp Business: <a href="https://business.whatsapp.com" target="_blank" rel="noopener">https://business.whatsapp.com</a></span></li>
+      </ul>
+      <div class="ia rv">
+        <span class="ic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8a96a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 0 0-5.8-1A3 3 0 0 0 4 8a3 3 0 0 0-1 5 3 3 0 0 0 2 4.5A3 3 0 0 0 12 19z"/><path d="M12 5a3 3 0 0 1 5.8-1A3 3 0 0 1 20 8a3 3 0 0 1 1 5 3 3 0 0 1-2 4.5A3 3 0 0 1 12 19z"/><path d="M12 5v14"/></svg></span>
+        <div><h3>Uso de IA</h3><p>Utilizamos inteligência artificial (Claude) como apoio para identificar quais tipos de imagens poderiam representar os exemplos da pesquisa. A seleção e a organização do conteúdo foram feitas pela equipe.</p></div>
+      </div>
+    </div>
+    <div class="ref-art" aria-hidden="true">
+      <div class="ring"></div><div class="circle"></div>
+      <svg class="paper" viewBox="0 0 200 260">
+        <path d="M10 6h140l44 44v200a6 6 0 0 1-6 6H10a6 6 0 0 1-6-6V12a6 6 0 0 1 6-6z" fill="#fbf7ee" stroke="#d9cfba" stroke-width="2"/>
+        <path d="M150 6v44h44z" fill="#1f4632"/>
+        <rect x="26" y="50" width="80" height="9" rx="4.5" fill="#c8a96a"/>
+        <g stroke="#2b5a40" stroke-width="2"><path d="M26 85h140M26 110h140M26 135h140M26 160h140M26 185h140M26 210h140"/></g>
+        <circle cx="128" cy="160" r="38" fill="rgba(255,255,255,.35)" stroke="#1f4632" stroke-width="11"/>
+        <path d="M156 188l34 34" stroke="#c8a96a" stroke-width="16" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><b>Comunicação que conecta</b> · Equipe: Luan Alves e Davi Fraron · Turma AI PCP3 2026/2 V4 · SENAI Blumenau</p>
+</footer>
+
+<div class="lb" id="lb" onclick="this.classList.remove('open')"><img alt=""></div>
+
+<script>
+  // revelar ao rolar
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), {threshold:.12});
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // menu ativo conforme a seção
+  const links = [...document.querySelectorAll('nav a')];
+  const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  function setActive(){
+    let cur = secs[0];
+    secs.forEach(s => { if (s.getBoundingClientRect().top <= 140) cur = s; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) cur = secs[secs.length-1];
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur.id));
+  }
+  addEventListener('scroll', setActive, {passive:true}); setActive();
+  links.forEach(a => a.addEventListener('click', () => document.querySelector('nav ul').classList.remove('open')));
+
+  // ampliar imagens
+  const lb = document.getElementById('lb');
+  document.querySelectorAll('.model img, .tshot img').forEach(img => img.addEventListener('click', () => { lb.querySelector('img').src = img.src; lb.classList.add('open'); }));
+  addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('open'); });
+</script>
+</body>
+</html>
